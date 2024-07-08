@@ -5,6 +5,8 @@ services:
         volumes:
           - ./dbt:/root/.dbt:Z
           - ./project_1:/usr/app/project_1:Z
+        environment:
+          DBT_PROJECT_DIR: /usr/app/project_1
         ports: 
           - '8888:80'
         command: ['sleep', '100000']
