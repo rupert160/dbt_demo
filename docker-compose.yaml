@@ -1,0 +1,19 @@
+version: '3'
+services:
+  dbt:
+        image: docker.io/xemuliam/dbt:latest
+        volumes:
+          - ./dbt:/root/.dbt:Z
+          - ./project_1:/usr/app/project_1:Z
+        ports: 
+          - '8888:80'
+        command: ['sleep', '100000']
+  postgres:
+        image: docker.io/library/postgres:latest
+        environment:
+          POSTGRES_PASSWORD: mypass
+          POSTGRES_HOST_AUTH_METHOD: trust
+        volumes:
+          - ./pg_data:/var/lib/postgresql/data:Z
+        ports: 
+          - '5432:5432'
